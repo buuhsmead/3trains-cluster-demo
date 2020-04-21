@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- hosts: default
+  become: true
   gather_facts: false
   vars:
     app_url: https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war
@@ -34,7 +35,7 @@
   pre_tasks:
     # mostly needed if running on a docker container
     - name: "Ensures required packages are installed"
-      yum:
+      package:
         name:
           - zip
           - unzip
@@ -59,3 +60,4 @@
         - 1
         - 2
         - 3
+
